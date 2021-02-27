@@ -7,11 +7,35 @@ public class PathFInder : MonoBehaviour
 {
     [SerializeField] Block startWaypoint, endWaypoint;
     Dictionary<Vector2Int, Block> grid = new Dictionary<Vector2Int, Block>();
+    Vector2Int[] directions =
+    {
+        Vector2Int.up,
+        Vector2Int.right,
+        Vector2Int.down,
+        Vector2Int.down
+    };
     // Start is called before the first frame update
     void Start()
     {
         LoadBlock();
         ColorStartAndEnd();
+        ExploreNeighbours();
+    }
+
+    private void ExploreNeighbours()
+    {
+        foreach(Vector2Int direction in directions)
+        {
+            Vector2Int ExploreCoordinate = startWaypoint.GetGridPos() + direction;
+            try
+            {
+                grid[ExploreCoordinate].SetTopColor(Color.blue);
+            }
+            catch
+            {
+
+            }
+        }
     }
 
     private void ColorStartAndEnd()

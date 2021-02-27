@@ -26,9 +26,9 @@ public class EditorSnap : MonoBehaviour
     {
         int gridSize = Waypoint.GetGridSize();
         transform.position = new Vector3(
-           Waypoint.GetGridPos().x, 
+           Waypoint.GetGridPos().x * gridSize, 
             0f, 
-           Waypoint.GetGridPos().y
+           Waypoint.GetGridPos().y * gridSize
         );
     }
 
@@ -36,7 +36,7 @@ public class EditorSnap : MonoBehaviour
     {
         int gridSize = Waypoint.GetGridSize();
         TextMesh textMesh = GetComponentInChildren<TextMesh>();
-        string LabelText = Waypoint.GetGridPos().x / gridSize + "," + Waypoint.GetGridPos().x / gridSize;
+        string LabelText = Waypoint.GetGridPos().x + "," + Waypoint.GetGridPos().y;
         textMesh.text = LabelText;
         gameObject.name = LabelText;
     }

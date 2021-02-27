@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    [SerializeField] Color ExploredColor;
     Vector2Int gridPos;
-
+    public bool isExplored = false;
+    public Block exploredFrom;
     const int gridSize = 10;
     // Start is called before the first frame update
     void Start()

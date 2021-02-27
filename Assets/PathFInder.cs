@@ -9,12 +9,13 @@ public class PathFInder : MonoBehaviour
     Dictionary<Vector2Int, Block> grid = new Dictionary<Vector2Int, Block>();
     Queue<Block> queue = new Queue<Block>();
     bool isRunning = true;
+    Block searchCenter;
 
     Vector2Int[] directions =
     {
         Vector2Int.up,
         Vector2Int.right,
-        Vector2Int.down,
+        Vector2Int.left,
         Vector2Int.down
     };
     // Start is called before the first frame update
@@ -23,26 +24,29 @@ public class PathFInder : MonoBehaviour
         LoadBlock();
         ColorStartAndEnd();
         PathFind();
-        //ExploreNeighbours();
+        
     }
 
     private void PathFind()
     {
         queue.Enqueue(startWaypoint);
 
-        while (queue.Count > 0)
+        while (queue.Count > 0 && isRunning)
         {
-            var searchCenter = queue.Dequeue();
-            print(searchCenter);
-            HaltIfendFound(searchCenter);
+            searchCenter = queue.Dequeue();
+            searchCenter.isExplored = true;
+            print("Searching From "+ searchCenter);
+            HaltIfendFound();
+            ExploreNeighbours();
         }
+        print("Finished Path Finding");
     }
 
-    private void HaltIfendFound(Block searchCenter)
+    private void HaltIfendFound()
     {
         if(searchCenter == endWaypoint)
         {
-            print("stopping");
+            print("End Way Point Has been Found");
             isRunning = false;
         }
     }
@@ -51,15 +55,29 @@ public class PathFInder : MonoBehaviour
     {
         foreach(Vector2Int direction in directions)
         {
-            Vector2Int ExploreCoordinate = startWaypoint.GetGridPos() + direction;
+            if (!isRunning) { break; }
+            Vector2Int NeighbourCoordinates = searchCenter.GetGridPos() + direction;
             try
             {
-                grid[ExploreCoordinate].SetTopColor(Color.blue);
+                QueueNewNeighbour(NeighbourCoordinates);
             }
             catch
             {
 
             }
+        }
+    }
+
+    private void QueueNewNeighbour(Vector2Int NeighbourCoordinates)
+    {
+        Block neighbour = grid[NeighbourCoordinates];
+        if (neighbour.isExplored || queue.Contains(neighbour))
+        {
+
+        }else{ 
+            
+            queue.Enqueue(neighbour);
+            neighbour.exploredFrom = searchCenter;
         }
     }
 

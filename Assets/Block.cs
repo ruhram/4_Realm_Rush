@@ -25,9 +25,9 @@ public class Block : MonoBehaviour
          Mathf.RoundToInt(transform.position.z / gridSize) * gridSize
         );
     }
-    // Update is called once per frame
-    void Update()
+    public void SetTopColor(Color color)
     {
-        
+        MeshRenderer TopMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
+        TopMeshRenderer.material.color = color;
     }
 }

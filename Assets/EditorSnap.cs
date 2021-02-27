@@ -8,8 +8,8 @@ using UnityEngine;
 public class EditorSnap : MonoBehaviour
 {
     
+
     Block Waypoint;
-    
     private void Awake()
     {
         Waypoint = GetComponent<Block>();

@@ -7,6 +7,9 @@ public class PathFInder : MonoBehaviour
 {
     [SerializeField] Block startWaypoint, endWaypoint;
     Dictionary<Vector2Int, Block> grid = new Dictionary<Vector2Int, Block>();
+    Queue<Block> queue = new Queue<Block>();
+    bool isRunning = true;
+
     Vector2Int[] directions =
     {
         Vector2Int.up,
@@ -19,7 +22,29 @@ public class PathFInder : MonoBehaviour
     {
         LoadBlock();
         ColorStartAndEnd();
-        ExploreNeighbours();
+        PathFind();
+        //ExploreNeighbours();
+    }
+
+    private void PathFind()
+    {
+        queue.Enqueue(startWaypoint);
+
+        while (queue.Count > 0)
+        {
+            var searchCenter = queue.Dequeue();
+            print(searchCenter);
+            HaltIfendFound(searchCenter);
+        }
+    }
+
+    private void HaltIfendFound(Block searchCenter)
+    {
+        if(searchCenter == endWaypoint)
+        {
+            print("stopping");
+            isRunning = false;
+        }
     }
 
     private void ExploreNeighbours()

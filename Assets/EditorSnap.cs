@@ -9,12 +9,12 @@ public class EditorSnap : MonoBehaviour
 {
     
     Block Waypoint;
-
+    
     private void Awake()
     {
         Waypoint = GetComponent<Block>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -34,8 +34,9 @@ public class EditorSnap : MonoBehaviour
 
     private void UpdateLabel()
     {
+        int gridSize = Waypoint.GetGridSize();
         TextMesh textMesh = GetComponentInChildren<TextMesh>();
-        string LabelText = Waypoint.GetGridPos().x / Waypoint.GetGridSize() + "," + Waypoint.GetGridPos().x / Waypoint.GetGridSize();
+        string LabelText = Waypoint.GetGridPos().x / gridSize + "," + Waypoint.GetGridPos().x / gridSize;
         textMesh.text = LabelText;
         gameObject.name = LabelText;
     }

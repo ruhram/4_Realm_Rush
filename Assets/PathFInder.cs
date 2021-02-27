@@ -10,6 +10,7 @@ public class PathFInder : MonoBehaviour
     Queue<Block> queue = new Queue<Block>();
     bool isRunning = true;
     Block searchCenter;
+    List<Block> path = new List<Block>();
 
     Vector2Int[] directions =
     {
@@ -18,16 +19,36 @@ public class PathFInder : MonoBehaviour
         Vector2Int.left,
         Vector2Int.down
     };
-    // Start is called before the first frame update
-    void Start()
+
+    public List<Block> GetPath()
     {
         LoadBlock();
         ColorStartAndEnd();
-        PathFind();
+        BreadthFirstSearch();
+        CreatePath();
+
+        return path;
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         
     }
 
-    private void PathFind()
+    private void CreatePath()
+    {
+        path.Add(endWaypoint);
+        Block previous = endWaypoint.exploredFrom;
+        while(previous != startWaypoint)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+        path.Add(startWaypoint);
+        path.Reverse();
+    }
+
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startWaypoint);
 
@@ -39,7 +60,7 @@ public class PathFInder : MonoBehaviour
             HaltIfendFound();
             ExploreNeighbours();
         }
-        print("Finished Path Finding");
+       
     }
 
     private void HaltIfendFound()
@@ -57,13 +78,9 @@ public class PathFInder : MonoBehaviour
         {
             if (!isRunning) { break; }
             Vector2Int NeighbourCoordinates = searchCenter.GetGridPos() + direction;
-            try
+            if(grid.ContainsKey(NeighbourCoordinates))
             {
-                QueueNewNeighbour(NeighbourCoordinates);
-            }
-            catch
-            {
-
+                QueueNewNeighbour(NeighbourCoordinates);//if there aren't block
             }
         }
     }

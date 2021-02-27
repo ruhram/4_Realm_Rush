@@ -34,7 +34,6 @@ public class EditorSnap : MonoBehaviour
 
     private void UpdateLabel()
     {
-        int gridSize = Waypoint.GetGridSize();
         TextMesh textMesh = GetComponentInChildren<TextMesh>();
         string LabelText = Waypoint.GetGridPos().x + "," + Waypoint.GetGridPos().y;
         textMesh.text = LabelText;

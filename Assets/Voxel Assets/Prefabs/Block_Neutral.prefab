@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 4135240793724244}
   - component: {fileID: 33304176190992668}
   - component: {fileID: 23272056169610652}
-  - component: {fileID: 5144179824352845157}
-  - component: {fileID: 4296979913876045414}
   m_Layer: 0
   m_Name: Block_Neutral
   m_TagString: Untagged
@@ -79,30 +77,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5144179824352845157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346198445039670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c2ee6aca9dd3a4494201e693b780a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExploredColor: {r: 0, g: 0, b: 0, a: 0}
-  isExplored: 0
-  exploredFrom: {fileID: 0}
---- !u!114 &4296979913876045414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346198445039670}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9eec4e3710897f41a0af8b8cbfac75b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -6,6 +6,7 @@ public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] Collider collision;
     [SerializeField] int hitPoints = 10;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class EnemyDamage : MonoBehaviour
         if(hitPoints < 0)
         {
             Destroy(gameObject);
+            print("Enemy Died");
         }
     }
     void ProcessHit()

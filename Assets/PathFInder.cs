@@ -22,13 +22,24 @@ public class PathFInder : MonoBehaviour
 
     public List<Block> GetPath()
     {
+        if (path.Count == 0)
+        {
+            CalculatePath();
+        }
+
+        return path;
+        
+        
+    }
+
+    private void CalculatePath()
+    {
         LoadBlock();
         ColorStartAndEnd();
         BreadthFirstSearch();
         CreatePath();
-
-        return path;
     }
+
     // Start is called before the first frame update
     void Start()
     {

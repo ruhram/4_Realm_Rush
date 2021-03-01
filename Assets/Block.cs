@@ -9,6 +9,7 @@ public class Block : MonoBehaviour
     public bool isExplored = false;
     public Block exploredFrom;
     const int gridSize = 10;
+    public bool isPlaceable= true;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +28,25 @@ public class Block : MonoBehaviour
          Mathf.RoundToInt(transform.position.z / gridSize)
         );
     }
-    public void SetTopColor(Color color)
+
+    private void OnMouseOver()
+    {
+        //detect mouse click
+        if (Input.GetMouseButtonDown(0))//left click
+        {
+            if (isPlaceable)
+            {
+                print(gameObject.name + "Clicked");
+            }
+            else
+            {
+                print("Can't Place Here");
+            }
+        }
+    }
+    /*public void SetTopColor(Color color)
     {
         MeshRenderer TopMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
         TopMeshRenderer.material.color = color;
-    }
+    }*/
 }

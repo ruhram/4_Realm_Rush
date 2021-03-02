@@ -8,10 +8,14 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] int hitPoints = 10;
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem deathParticle;
+    [SerializeField] AudioClip EnemyDamageSFX;
+    [SerializeField] AudioClip EnemyDeathSFX;
+
+    AudioSource myAudioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        myAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,5 +43,6 @@ public class EnemyDamage : MonoBehaviour
         hitPoints--;
         print("Current Hit Point" + hitPoints);
         hitParticle.Play();
+        myAudioSource.PlayOneShot(EnemyDamageSFX);
     }
 }

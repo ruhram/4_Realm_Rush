@@ -4856,6 +4856,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77a0c12508bf234d9ad34739df64f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementPeriod: 0.5
+  deathParticle: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
+    type: 3}
 --- !u!114 &8194599617133738027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4871,6 +4874,7 @@ MonoBehaviour:
   collision: {fileID: 8165058457197836095}
   hitPoints: 10
   hitParticle: {fileID: 7393579587218656756}
+  deathParticle: {fileID: 0}
 --- !u!1 &8196335781085220481
 GameObject:
   m_ObjectHideFlags: 0

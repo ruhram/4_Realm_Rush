@@ -26,13 +26,12 @@ public class EnemyDamage : MonoBehaviour
         {
             var vfx = Instantiate(deathParticle, transform.position, Quaternion.identity);
             vfx.Play();
-
+ 
             //destroy particle after delay
             var destroyDelay = vfx.main.duration;
 
             Destroy(vfx.gameObject, destroyDelay);
             Destroy(gameObject);
-            print("Enemy Died");
         }
     }
     void ProcessHit()

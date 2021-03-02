@@ -6,7 +6,8 @@ public class EnemyDamage : MonoBehaviour
 {
     [SerializeField] Collider collision;
     [SerializeField] int hitPoints = 10;
-    
+    [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem deathParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,7 @@ public class EnemyDamage : MonoBehaviour
         ProcessHit();
         if(hitPoints < 0)
         {
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
             print("Enemy Died");
         }
@@ -31,5 +33,6 @@ public class EnemyDamage : MonoBehaviour
     {
         hitPoints--;
         print("Current Hit Point" + hitPoints);
+        hitParticle.Play();
     }
 }

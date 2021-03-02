@@ -24,7 +24,8 @@ public class EnemyDamage : MonoBehaviour
         ProcessHit();
         if(hitPoints < 0)
         {
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
+            var vfx = Instantiate(deathParticle, transform.position, Quaternion.identity);
+            vfx.Play();
             Destroy(gameObject);
             print("Enemy Died");
         }

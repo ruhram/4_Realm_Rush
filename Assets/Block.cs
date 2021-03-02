@@ -10,7 +10,7 @@ public class Block : MonoBehaviour
     public Block exploredFrom;
     const int gridSize = 10;
     public bool isPlaceable= true;
-    [SerializeField] Tower towerPrefabs;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +37,7 @@ public class Block : MonoBehaviour
         {
             if (isPlaceable)
             {
-                Instantiate(towerPrefabs, transform.position, Quaternion.identity);
-                isPlaceable = false;
+                FindObjectOfType<TowerFactory>().AddTower(this);
             }
             else
             {

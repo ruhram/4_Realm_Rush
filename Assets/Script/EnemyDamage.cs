@@ -35,6 +35,7 @@ public class EnemyDamage : MonoBehaviour
             var destroyDelay = vfx.main.duration;
 
             Destroy(vfx.gameObject, destroyDelay);
+            AudioSource.PlayClipAtPoint(EnemyDeathSFX, Camera.main.transform.position);
             Destroy(gameObject);
         }
     }
